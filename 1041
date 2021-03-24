@@ -1,0 +1,26 @@
+//题目大意是：机器人在（0，0）面向北，
+//我们想一下什么情况会返回true。当部分循环结束时，机器人回到了原点；或者，当部分循环结束时，机器人没有回到原点，并且朝向不是北。
+//先创建一个二维数组dirs代表往四个方向走
+//0-3代表东南西北的方向 0北，1东，2南，3西
+
+class Solution{
+    public boolean isRobotBounded(String instructions) {
+        int[][] dirs = new int[][]{{1,0},{0,1},{0,-1},{-1,0}};
+        
+        int x = 0;
+        int y = 0;
+        int idx = 0;
+        //toCharArray()返回一个字符数组
+        for(char i: instructions.toCharArray()){
+            if(i == 'L'){
+                idx = (idx + 3) % 4;
+                }else if(i == 'R'){
+                idx = (idx + 1) % 4;
+                }else{
+                    x += dirs[idx][0];
+                    y += dirs[idx][1];
+                }
+        }
+        return (x == 0 && y == 0) || (idx != 0);
+            }
+        }
